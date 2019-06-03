@@ -1,0 +1,48 @@
+#############
+### TASKS ###
+#############
+
+Add caching and batching to server: https://github.com/cvburgess/SQLDataSource
+Add authentication to server
+
+
+##################
+### OBJECTIVES ###
+##################
+
+Create Dockerized node server which uses Apollo server and knex to serve existing budget tracker MySQL database
+Create React client that replaces jQuery and Bootstrap which connects to the Dockerized server
+
+
+################
+### COMMANDS ###
+################
+
+query GetEmployee {
+  employee(id: 1) {
+    id
+    employee
+  }
+}
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "{ employee(id: 1) { id employee } }" }' \
+  http://localhost:3030
+
+dk image rm -f $(dk images -q | head -5)
+
+
+############
+### MISC ###
+############
+
+Opened droplet firewall at port 3031
+
+"express": "^4.16.1",
+"datasource-sql": "0.1.7"
+
+"proxy": "http://server:3030",
+
+sudo netstat -plunt
