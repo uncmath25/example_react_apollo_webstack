@@ -6,8 +6,8 @@ import { ApolloProvider } from 'react-apollo';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
-import App from './App';
+import './css/_third_party/bootstrap-4.3.1.css'
+import App from './js/App';
 
 
 const cache = new InMemoryCache();

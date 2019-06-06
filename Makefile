@@ -33,7 +33,7 @@ up: clean
 down:
 	@echo "*** Stopping full node dev stack... ***"
 	docker-compose -f docker-compose.yml down --remove-orphans
-	mk clean
+	make clean
 
 build: clean
 	@echo "*** Building full node stack for production deployment... ***"
