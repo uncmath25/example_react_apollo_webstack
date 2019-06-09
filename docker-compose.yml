@@ -3,12 +3,12 @@ services:
   db:
     image: mariadb:10.3
     environment:
-      MYSQL_DATABASE: "temp"
+      MYSQL_DATABASE: "budget_tracker"
       MYSQL_ROOT_PASSWORD: "PASSWORD"
     ports:
       - "3306:3306"
     volumes:
-      - ./temp_db.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./sample_dump.sql:/docker-entrypoint-initdb.d/dump.sql
   server:
     build:
       context: server

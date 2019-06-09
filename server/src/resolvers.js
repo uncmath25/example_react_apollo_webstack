@@ -1,6 +1,5 @@
 module.exports = {
   Query: {
-    employee: (_, { id }, { dataSources }) =>
-      dataSources.budgetTrackerMySQL.getEmployeeById({ employeeId: id })
+    expenses: (_, { startDate, endDate }, { dataSources }) => dataSources.budgetTrackerMySQL.getExpenses({ startDate, endDate })
   }
 };

@@ -3,13 +3,24 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    # employees: [Employee]!
-    employee(id: Int!): Employee
+    expenses(startDate: String!, endDate: String!): [Expense]!
   }
 
-  type Employee {
-    id: Int!
-    employee: String
+  type Expense {
+    id: ID!
+    category: ExpenseCategory!
+    date: String!
+    title: String!
+    description: String!
+    cost: Float!
+  }
+
+  enum ExpenseCategory {
+    GROCERY
+    LIVING_ESSENTIALS
+    DINING
+    SHOPPING_AND_ENTERTAINMENT
+    SPECIAL
   }
 `;
 

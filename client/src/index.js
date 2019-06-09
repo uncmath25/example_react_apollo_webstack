@@ -23,10 +23,14 @@ const client = new ApolloClient({
 client
   .query({
     query: gql`
-      query GetEmployee {
-        employee(id: 1) {
+      query GetExpenses {
+        expenses(startDate: "2017-10-01", endDate: "2017-11-01") {
           id
-          employee
+          category
+          date
+          title
+          description
+          cost
         }
       }
     `
