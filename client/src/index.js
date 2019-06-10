@@ -24,13 +24,15 @@ client
   .query({
     query: gql`
       query GetExpenses {
-        expenses(startDate: "2017-10-01", endDate: "2017-11-01") {
+        getExpenses(startDate: "2017-10-01", endDate: "2017-11-01", categories: ["GROCERY", "DINING"]) {
           id
-          category
-          date
-          title
-          description
-          cost
+          expense {
+            category
+            date
+            title
+            description
+            cost
+          }
         }
       }
     `

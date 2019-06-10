@@ -3,15 +3,38 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    expenses(startDate: String!, endDate: String!): [Expense]!
+    getExpenses(startDate: String, endDate: String, categories: [String]): [ExpenseId]!
+  }
+
+  type Mutation {
+    addExpenses(expenses: [ExpenseInput]!): [Expense]!
+    updateExpenses(expenseIds: [ExpenseIdInput]!): [ExpenseId]!
+    deleteExpenses(ids: [ID]!): [ID]!
+  }
+
+  type ExpenseId {
+    id: ID!
+    expense: Expense!
   }
 
   type Expense {
-    id: ID!
     category: ExpenseCategory!
     date: String!
     title: String!
-    description: String!
+    description: String
+    cost: Float!
+  }
+
+  input ExpenseIdInput {
+    id: ID!
+    expense: ExpenseInput!
+  }
+
+  input ExpenseInput {
+    category: ExpenseCategory!
+    date: String!
+    title: String!
+    description: String
     cost: Float!
   }
 

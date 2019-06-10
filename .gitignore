@@ -1,4 +1,4 @@
-.env.prod
+# .env.prod
 
 node_modules
 .env

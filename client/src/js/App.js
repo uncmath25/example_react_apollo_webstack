@@ -32,7 +32,7 @@ const PAGE_MAP = {
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentPage: DEFAULT_PAGE };
+    this.state = { currentPage: PAGE_MAP[DEFAULT_PAGE] };
     this.setPage = this.setPage.bind(this);
   }
 
