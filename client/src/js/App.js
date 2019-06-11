@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Header, { TAB_NAME } from './Header'
 import Summary from './Summary'
@@ -42,10 +42,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header tabInfo={TAB_INFO_MAP} setPage={this.setPage}  />
+      <Fragment>
+        <Header tabInfo={TAB_INFO_MAP} setPage={this.setPage} />
         {this.state.currentPage}
-      </div>
+      </Fragment>
     )
   }
 }

@@ -20,26 +20,26 @@ const client = new ApolloClient({
   link
 })
 
-client
-  .query({
-    query: gql`
-      query GetExpenses {
-        getExpenses(startDate: "2017-10-01", endDate: "2017-11-01", categories: ["GROCERY", "DINING"]) {
-          id
-          expense {
-            category
-            date
-            title
-            description
-            cost
-          }
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query GetExpenses {
+//         getExpenses(startDate: "2017-10-01", endDate: "2017-11-01", categories: ["GROCERY", "DINING"]) {
+//           id
+//           expense {
+//             category
+//             date
+//             title
+//             description
+//             cost
+//           }
+//         }
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
 
-console.log(process.env.REACT_APP_API_URL);
+// console.log(process.env.REACT_APP_API_URL);
 
 ReactDOM.render(
   <ApolloProvider client={client}>

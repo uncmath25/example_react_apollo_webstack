@@ -2,8 +2,10 @@
 ### TASKS ###
 #############
 
+Add pagination: https://www.apollographql.com/docs/tutorial/resolvers/
+
 Add caching and batching to server: https://github.com/cvburgess/SQLDataSource
-Add authentication to server
+Add authentication to server: https://www.apollographql.com/docs/tutorial/resolvers/
 
 
 ##################
@@ -18,25 +20,37 @@ Create React client that replaces jQuery and Bootstrap which connects to the Doc
 ### COMMANDS ###
 ################
 
-query GetEmployee {
-  employee(id: 1) {
-    id
-    employee
-  }
-}
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "mutation { addExpenses(expenses: [{ category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar...\", cost: 1.23 }] ) { category date title description cost } }" }' \
+  http://localhost:3030
 
 curl \
   -X POST \
   -H "Content-Type: application/json" \
-  --data '{ "query": "{ employee(id: 1) { id employee } }" }' \
+  --data '{ "query": "mutation { updateExpenses(expenseIds: [{ id: 4, expense: { category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar2...\", cost: 1.23 } }] ) { id expense { category date title description cost } } }" }' \
   http://localhost:3030
 
-dk image rm -f $(dk images -q | head -5)
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "mutation { deleteExpenses(ids: [4] ) }" }' \
+  http://localhost:3030
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "{ getExpenses( startDate: \"2017-10-01\", endDate: \"2017-11-03\") { id expense { category date title description cost } } }" }' \
+  http://localhost:3030
 
 
 ############
 ### MISC ###
 ############
+
+dk image rm -f $(dk images -q | head -5)
+
 
 Opened droplet firewall at port 3031
 
@@ -83,35 +97,3 @@ sudo netstat -plunt
     }
   }
 }
-
-
-curl \
-  -X POST \
-  -H "Content-Type: application/json" \
-  --data '{ "query": "{ getExpenses( startDate: \"2017-10-01\", endDate: \"2017-11-01\", categories: [\"GROCERY\", \"DINING\"]) { id expense { category date title description cost } } }" }' \
-  http://localhost:3030
-
-
-curl \
-  -X POST \
-  -H "Content-Type: application/json" \
-  --data '{ "query": "mutation { addExpenses(expenses: [{ category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar...\", cost: 1.23 }] ) { category date title description cost } }" }' \
-  http://localhost:3030
-
-curl \
-  -X POST \
-  -H "Content-Type: application/json" \
-  --data '{ "query": "mutation { updateExpenses(expenseIds: [{ id: 4, expense: { category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar2...\", cost: 1.23 } }] ) { id expense { category date title description cost } } }" }' \
-  http://localhost:3030
-
-curl \
-  -X POST \
-  -H "Content-Type: application/json" \
-  --data '{ "query": "mutation { deleteExpenses(ids: [4] ) }" }' \
-  http://localhost:3030
-
-curl \
-  -X POST \
-  -H "Content-Type: application/json" \
-  --data '{ "query": "{ getExpenses( startDate: \"2017-10-01\", endDate: \"2017-11-03\") { id expense { category date title description cost } } }" }' \
-  http://localhost:3030

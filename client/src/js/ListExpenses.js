@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 
 export default class ListExpenses extends Component {
@@ -9,9 +9,9 @@ export default class ListExpenses extends Component {
 
     render() {
       return (
-        <div className="ListExpenses">
+        <Fragment>
             List Expenses
-        </div>
+        </Fragment>
       )
     }
   }

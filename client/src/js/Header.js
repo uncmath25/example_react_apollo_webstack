@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 
@@ -15,7 +15,7 @@ export default class Header extends Component {
 
     render() {
       return (
-        <div className="Summary">
+        <Fragment>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand href="#home">
               <img
@@ -36,7 +36,7 @@ export default class Header extends Component {
                 </Nav>
               </Navbar.Collapse>
           </Navbar>
-        </div>
+        </Fragment>
       )
     }
   }
