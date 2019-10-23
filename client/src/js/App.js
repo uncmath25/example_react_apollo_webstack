@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import Header, { TAB_NAME } from './Header'
-import Summary from './Summary'
-import RecordExpenses from './RecordExpenses'
-import ListExpenses from './ListExpenses'
+import Header, { TAB_NAME } from './components/Header';
+import Summary from './views/Summary';
+import RecordExpenses from './views/RecordExpenses';
+import ListExpenses from './views/ListExpenses';
 
 
 const SUMMARY_PAGE = 'summary';
@@ -21,13 +21,13 @@ const TAB_INFO_MAP = {
   [LIST_EXPENSES]: {
     [TAB_NAME]: 'List Expenses'
   },
-}
+};
 
 const PAGE_MAP = {
   [SUMMARY_PAGE]: <Summary />,
   [RECORD_EXPENSES]: <RecordExpenses />,
   [LIST_EXPENSES]: <ListExpenses />
-}
+};
 
 export default class App extends Component {
   constructor(props) {

@@ -1,48 +1,28 @@
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-import gql from "graphql-tag";
 import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloProviderHooks } from "@apollo/react-hooks";
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './css/_third_party/bootstrap-4.3.1.css'
+import './css/_third_party/bootstrap-4.3.1.css';
 import App from './js/App';
 
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
   uri: process.env.REACT_APP_API_URL
-})
-
+});
 const client = new ApolloClient({
   cache,
   link
-})
-
-// client
-//   .query({
-//     query: gql`
-//       query GetExpenses {
-//         getExpenses(startDate: "2017-10-01", endDate: "2017-11-01", categories: ["GROCERY", "DINING"]) {
-//           id
-//           expense {
-//             category
-//             date
-//             title
-//             description
-//             cost
-//           }
-//         }
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
-
-// console.log(process.env.REACT_APP_API_URL);
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ApolloProviderHooks client={client}>
+      <App />
+    </ApolloProviderHooks>
   </ApolloProvider>, document.getElementById('root')
 );

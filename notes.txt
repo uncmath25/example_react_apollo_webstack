@@ -2,6 +2,9 @@
 ### TASKS ###
 #############
 
+Add router to React index root
+
+
 Add pagination: https://www.apollographql.com/docs/tutorial/resolvers/
 
 Add caching and batching to server: https://github.com/cvburgess/SQLDataSource
@@ -97,3 +100,7 @@ sudo netstat -plunt
     }
   }
 }
+
+# Docker hack fix:
+  sudo mkdir /sys/fs/cgroup/systemd
+  sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
