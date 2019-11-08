@@ -1,0 +1,7 @@
+node_modules
+
+.env.prod
+nginx-client.conf
+nginx-server.conf
+
+build.tgz

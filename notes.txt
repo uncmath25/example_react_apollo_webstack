@@ -1,0 +1,106 @@
+#############
+### TASKS ###
+#############
+
+Add router to React index root
+
+
+Add pagination: https://www.apollographql.com/docs/tutorial/resolvers/
+
+Add caching and batching to server: https://github.com/cvburgess/SQLDataSource
+Add authentication to server: https://www.apollographql.com/docs/tutorial/resolvers/
+
+
+##################
+### OBJECTIVES ###
+##################
+
+Create Dockerized node server which uses Apollo server and knex to serve existing budget tracker MySQL database
+Create React client that replaces jQuery and Bootstrap which connects to the Dockerized server
+
+
+################
+### COMMANDS ###
+################
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "mutation { addExpenses(expenses: [{ category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar...\", cost: 1.23 }] ) { category date title description cost } }" }' \
+  http://localhost:3030
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "mutation { updateExpenses(expenseIds: [{ id: 4, expense: { category: SHOPPING_AND_ENTERTAINMENT, date: \"2017-11-03\", title: \"Foo\", description: \"Bar2...\", cost: 1.23 } }] ) { id expense { category date title description cost } } }" }' \
+  http://localhost:3030
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "mutation { deleteExpenses(ids: [4] ) }" }' \
+  http://localhost:3030
+
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{ "query": "{ getExpenses( startDate: \"2017-10-01\", endDate: \"2017-11-03\") { id expense { category date title description cost } } }" }' \
+  http://localhost:3030
+
+
+############
+### MISC ###
+############
+
+dk image rm -f $(dk images -q | head -5)
+
+
+Opened droplet firewall at port 3031
+
+"express": "^4.16.1",
+"datasource-sql": "0.1.7"
+
+"proxy": "http://server:3030",
+
+sudo netstat -plunt
+
+
+{
+  getExpenses(
+    startDate: "2017-10-01",
+    endDate: "2017-11-01",
+    categories: ["GROCERY", "DINING"]
+  ) {
+    id
+    expense {
+      category
+      date
+      title
+      description
+      cost
+    }
+  }
+}
+
+{
+  addExpenses({
+    category: "SHOPPING_AND_ENTERTAINMENT",
+    date: "2017-11-03",
+    title: "Foo",
+    description: "Bar...",
+    cost: 1.23
+  }) {
+    id
+    expense {
+      category
+      date
+      title
+      description
+      cost
+    }
+  }
+}
+
+# Docker hack fix:
+  sudo mkdir /sys/fs/cgroup/systemd
+  sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
