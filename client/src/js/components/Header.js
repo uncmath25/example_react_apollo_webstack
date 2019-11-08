@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
 
 
 export const TAB_NAME = 'tabName';
@@ -23,14 +24,8 @@ export default function Header(props) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          {Object.keys(props.tabInfo).map(
-            t => (
-              <Nav.Link key={t}>
-                <NavItem key={t} onClick={() => props.setPage(t)}>
-                  {props.tabInfo[t][TAB_NAME]}
-                </NavItem>
-              </Nav.Link>
-            )
+          {Object.keys(props.viewNameMap).map(
+            t => <Nav.Link key={t} as={NavLink} to={'/' + t}>{props.viewNameMap[t]}</Nav.Link>
           )}
         </Nav>
       </Navbar.Collapse>

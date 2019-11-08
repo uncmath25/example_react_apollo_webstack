@@ -1,29 +1,13 @@
-import React, { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import React, { Fragment } from 'react';
 import { Table } from 'react-bootstrap';
-import gql from 'graphql-tag';
 
-import { EXPENSE_CATEGORY_MAP } from '../util/gql_constants';
+import { EXPENSE_CATEGORY_MAP, EXPENSE_CATEGORY_COLOR_MAP, GET_EXPENSES, BuildCategoryTotals } from '../util/gql';
 import { ConvertDateToString } from '../util/time';
 
 
-const GET_EXPENSES = gql`
-  query GetExpenses($startDate: String, $endDate: String, $categories: [String]) {
-    getExpenses(startDate: $startDate, endDate: $endDate, categories: $categories) {
-      id
-      expense {
-        category
-        date
-        title
-        description
-        cost
-      }
-    }
-  }
-`;
-
 export default function SummaryTable (props) {
-	const startDate = ConvertDateToString(props.startDate);
+  const startDate = ConvertDateToString(props.startDate);
 	const endDate = ConvertDateToString(props.endDate);
 	const categories = Object.values(EXPENSE_CATEGORY_MAP);
 	const { data, loading, error } = useQuery(GET_EXPENSES, {
@@ -31,37 +15,27 @@ export default function SummaryTable (props) {
 	});
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>ERROR!</p>;
+  const categoryTotals = BuildCategoryTotals(data.getExpenses);
 	return (
 		<Fragment>
 			<Table striped bordered hover>
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Category</th>
-						<th>Date</th>
-						<th>Title</th>
-						<th>Description</th>
-						<th>Cost</th>
+            {Object.keys(categoryTotals).map(categoryKey => (
+              <th key={categoryKey} style={{backgroundColor: EXPENSE_CATEGORY_COLOR_MAP[categoryKey]}}>{categoryKey}</th>
+            ))
+            }
 					</tr>
 				</thead>
 				<tbody>
-				{data.getExpenses &&
-					data.getExpenses.map(record => (
-						<tr key={record.id}>
-							<td>{record.id}</td>
-							<td>{record.expense.category}</td>
-							<td>{record.expense.date}</td>
-							<td>{record.expense.title}</td>
-							<td>{record.expense.description}</td>
-							<td>{record.expense.cost}</td>
-						</tr>
-					))
-				}
+          <tr>
+            {Object.keys(categoryTotals).map(categoryKey => (
+              <td key={categoryKey}>{categoryTotals[categoryKey]}</td>
+            ))
+            }
+          </tr>
 				</tbody>
 			</Table>
-			{startDate}
-			{"    "}
-			{endDate}
 		</Fragment>
 	);
-}
+};

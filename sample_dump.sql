@@ -21,6 +21,6 @@ CREATE TABLE budget_tracker.expenses (
 );
 
 INSERT INTO budget_tracker.expenses VALUES
-    (NULL, 0, DATE('2017-11-01'), 'Trader Joes', 'Work Meals', 13.75),
-    (NULL, 2, DATE('2017-11-01'), 'Starbucks', 'Latte', 4.45),
-    (NULL, 2, DATE('2017-11-02'), 'Grand Casino', 'Breakfast', 6.30);
+    (NULL, 0, DATE('2019-11-01'), 'Trader Joes', 'Work Meals', 13.75),
+    (NULL, 2, DATE('2019-11-01'), 'Starbucks', 'Latte', 4.45),
+    (NULL, 2, DATE('2019-11-02'), 'Grand Casino', 'Breakfast', 6.30);
