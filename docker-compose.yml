@@ -19,8 +19,9 @@ services:
       - .env
     links:
       - db
+    # Update these local mount points for your local location
     volumes:
-      - /home/player1/Documents/Content/coding_projects/example_react_apollo_website/server/src:/usr/src/app/src
+      - /home/player1/Content/coding_projects/example_react_apollo_webstack/server/src:/usr/src/app/src
     command: npm start
   client:
     build:
@@ -33,5 +34,5 @@ services:
     links:
       - server
     volumes:
-      - /home/player1/Documents/Content/coding_projects/example_react_apollo_website/client/src:/usr/src/app/src
+      - /home/player1/Content/coding_projects/example_react_apollo_webstack/client/src:/usr/src/app/src
     command: npm start

@@ -21,6 +21,7 @@ clean:
 
 up: clean
 	@echo "*** Building and running the full node stack for interactive development... ***"
+	@echo "*** REMEMBER to update volume mount points for docker-compose to your local repo location ***"
 	cp .env.dev .env
 	cp .env.dev server/.env
 	cp .env.dev client/.env
