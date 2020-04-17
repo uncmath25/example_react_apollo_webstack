@@ -13,7 +13,9 @@
     "apollo-server": "2.2.0-alpha.2",
     "dotenv": "8.0.0",
     "graphql": "^14.0.2",
+    "kind-of": ">=6.0.3",
     "knex": "^0.19.5",
+    "minimist": ">=1.2.3",
     "mysql": "2.17.1"
   }
 }

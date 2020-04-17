@@ -7,6 +7,8 @@ REMOTE_DIR_NAME="budget_tracker_apollo_website"
 REMOTE_SERVER_PROFILE="testing-lab"
 REMOTE_PARENT_WEBSITE_DIR="/home/colton/websites/dev"
 
+default: up
+
 clean:
 	@echo "*** Cleaning repo of unnecessary artifacts... ***"
 	rm -rf $(REMOTE_DIR_NAME)
